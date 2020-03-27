@@ -13,6 +13,7 @@
 		411E69E32429229700B210DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 411E69E12429229700B210DC /* Main.storyboard */; };
 		411E69E5242922A100B210DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 411E69E4242922A100B210DC /* Assets.xcassets */; };
 		411E69E8242922A100B210DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 411E69E6242922A100B210DC /* LaunchScreen.storyboard */; };
+		412CF574242E99B40018647B /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412CF573242E99B40018647B /* MainTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		411E69E4242922A100B210DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		411E69E7242922A100B210DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		411E69E9242922A100B210DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		412CF573242E99B40018647B /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				411E69DD2429229700B210DC /* SceneDelegate.swift */,
 				411E69DF2429229700B210DC /* ViewController.swift */,
 				411E69E12429229700B210DC /* Main.storyboard */,
+				412CF573242E99B40018647B /* MainTabBar.swift */,
 				411E69E4242922A100B210DC /* Assets.xcassets */,
 				411E69E6242922A100B210DC /* LaunchScreen.storyboard */,
 				411E69E9242922A100B210DC /* Info.plist */,
@@ -141,6 +144,7 @@
 				411E69E02429229700B210DC /* ViewController.swift in Sources */,
 				411E69DC2429229700B210DC /* AppDelegate.swift in Sources */,
 				411E69DE2429229700B210DC /* SceneDelegate.swift in Sources */,
+				412CF574242E99B40018647B /* MainTabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

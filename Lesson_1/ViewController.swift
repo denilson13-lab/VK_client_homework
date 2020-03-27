@@ -15,15 +15,26 @@ class ViewController: UIViewController {
     @IBOutlet weak var loginInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
     
-    @IBAction func enterButton() {
-        let login = loginInput.text!
-        let password = passwordInput.text!
-        if login == "Denis" && password == "123" {
-            print("Успешная авторизация")
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "loginSegue" {
+            
+            let login = loginInput.text!
+            let password = passwordInput.text!
+            
+            if login == "Denis" && password == "123" {
+               return true
+            } else {
+                let alert = UIAlertController(title: "Ошибка", message: "Неверный логин или пароль", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alert.addAction(action)
+                present(alert, animated: true, completion: nil)
+                return false
+            }
         } else {
-            print("неуспешная авторизация")
+            return true
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

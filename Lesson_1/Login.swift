@@ -13,13 +13,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var scrollBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var loginInput: UITextField!
-    @IBOutlet weak var passwordInput: UITextField!
+    @IBOutlet weak var passwordInput: UITextField! 
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "loginSegue" {
             
             let login = loginInput.text!
-            let password = passwordInput.text!
+            let password = passwordInput.text! 
             
             if login == "Denis" && password == "123" {
                return true

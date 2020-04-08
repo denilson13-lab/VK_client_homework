@@ -21,6 +21,6 @@ class Group {
 
 extension Group: Equatable {
     static func == (lhs: Group, rhs: Group) -> Bool {
-        lhs.name == rhs.name && lhs.avatar =
+        lhs.name == rhs.name && lhs.avatar == rhs.avatar
     }
 }

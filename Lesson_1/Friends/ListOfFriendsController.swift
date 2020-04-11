@@ -8,6 +8,11 @@
 
 import UIKit
 
+struct Section <T> {
+    var title: String
+    var items: [T]
+}
+
 class ListOfFriendsController: UITableViewController {
     
     
@@ -20,6 +25,8 @@ class ListOfFriendsController: UITableViewController {
     
     var filteredUsers: [User] = []
     
+    var usersSection = [Section<User>]()
+    
     let searchController = UISearchController(searchResultsController: nil)
     
     var isSearchBarEmpty: Bool {
@@ -27,30 +34,37 @@ class ListOfFriendsController: UITableViewController {
     }
     
     var isFiltering: Bool {
-      return searchController.isActive && !isSearchBarEmpty
+        return searchController.isActive && !isSearchBarEmpty
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Найти друзей"
+        searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
+        let usersDic = Dictionary.init(grouping: users) {
+            $0.surname.prefix(1)
+        }
+        // Создание секций по словарю
+        usersSection = usersDic.map {Section(title: String($0.key), items: $0.value)}
+        // Сортировка секций
+        usersSection.sort {$0.title < $1.title}
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        usersSection.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
             return filteredUsers.count
         }
-        return users.count
+        return usersSection[section].items.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath) as! FriendsCell
@@ -58,7 +72,7 @@ class ListOfFriendsController: UITableViewController {
         if isFiltering {
             user = filteredUsers[indexPath.row]
         } else {
-            user = users[indexPath.row]
+            user = usersSection[indexPath.section].items[indexPath.row]
         }
         cell.friendName.text = "\(user.name) \(user.surname)"
         cell.friendFoto.image = user.avatar
@@ -84,7 +98,7 @@ class ListOfFriendsController: UITableViewController {
         filteredUsers = users.filter {
             (user: User) -> Bool in
             if user.name.lowercased().contains(searchText.lowercased()) ||
-            user.surname.lowercased().contains(searchText.lowercased()) {
+                user.surname.lowercased().contains(searchText.lowercased()) {
                 return true
             } else {
                 return false
@@ -92,6 +106,16 @@ class ListOfFriendsController: UITableViewController {
         }
         tableView.reloadData()
     }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
+        return usersSection[section].title
+    }
+    
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let headerView = UIView()
+//        headerView.alpha = 0.5
+//        return headerView
+//    }
 }
 
 extension ListOfFriendsController: UISearchResultsUpdating {

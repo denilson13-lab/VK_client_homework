@@ -15,23 +15,49 @@ class GroupsTableViewController: UITableViewController {
         Group(name: "Скульпторы", avatar: "sculpture"),
     ]
     
+    var filteredGroups: [Group] = []
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    var isFiltering: Bool {
+       return searchController.isActive && !isSearchBarEmpty
+     }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Поиск"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering {
+            return filteredGroups.count
+        }
         return groups.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsCell", for: indexPath) as! GroupsCell
-        let selectedGroup = groups[indexPath.row]
-        cell.groupName.text = selectedGroup.name
-        cell.groupPicture.image = selectedGroup.avatar
+        let group: Group
+        if isFiltering {
+            group = filteredGroups[indexPath.row]
+        } else {
+            group = groups[indexPath.row]
+        }
+        cell.groupName.text = group.name
+        cell.groupPicture.image = group.avatar
         return cell
     }
     
@@ -54,6 +80,22 @@ class GroupsTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-
+    
+    func filterContentForSearchText(_ searchText: String) {
+        filteredGroups = groups.filter { (group: Group) -> Bool in
+            if group.name.lowercased().contains(searchText.lowercased()) {
+                return true
+            } else {
+                return false
+            }
+        }
+        tableView.reloadData()
+    }
 }
 
+extension GroupsTableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
+    }
+}

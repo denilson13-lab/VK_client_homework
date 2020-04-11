@@ -19,6 +19,9 @@
 		9239899624351B5B00EAA259 /* FriendsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9239899524351B5B00EAA259 /* FriendsCollectionViewCell.swift */; };
 		923F01CB243527BF00FF759D /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F01CA243527BF00FF759D /* GroupsTableViewController.swift */; };
 		923F01CD243527E900FF759D /* GroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923F01CC243527E900FF759D /* GroupsCell.swift */; };
+		92591E0F2441F7A600403608 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92591E0E2441F7A600403608 /* NewsCell.swift */; };
+		92591E112441F7C300403608 /* NewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92591E102441F7C300403608 /* NewsController.swift */; };
+		92591E13244232C200403608 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92591E12244232C200403608 /* News.swift */; };
 		925FCC5E243A0DA000FCFC09 /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925FCC5D243A0DA000FCFC09 /* HeartButton.swift */; };
 		928BAE8024363F6E00475B0F /* Group_Select_TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928BAE7F24363F6E00475B0F /* Group_Select_TableViewController.swift */; };
 		928BAE822436417900475B0F /* GroupTo_Select_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928BAE812436417900475B0F /* GroupTo_Select_TableViewCell.swift */; };
@@ -43,6 +46,9 @@
 		9239899524351B5B00EAA259 /* FriendsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewCell.swift; sourceTree = "<group>"; };
 		923F01CA243527BF00FF759D /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
 		923F01CC243527E900FF759D /* GroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsCell.swift; sourceTree = "<group>"; };
+		92591E0E2441F7A600403608 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		92591E102441F7C300403608 /* NewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsController.swift; sourceTree = "<group>"; };
+		92591E12244232C200403608 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		925FCC5D243A0DA000FCFC09 /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
 		928BAE7F24363F6E00475B0F /* Group_Select_TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group_Select_TableViewController.swift; sourceTree = "<group>"; };
 		928BAE812436417900475B0F /* GroupTo_Select_TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTo_Select_TableViewCell.swift; sourceTree = "<group>"; };
@@ -82,6 +88,7 @@
 		411E69DA2429229700B210DC /* Lesson_1 */ = {
 			isa = PBXGroup;
 			children = (
+				92591E0D2441F76700403608 /* News */,
 				92EF11CC243D103A005EB9FF /* Navigation */,
 				92EF11CB243D0FDE005EB9FF /* Groups */,
 				92EF11CA243D0FAE005EB9FF /* Friends Collection */,
@@ -98,11 +105,21 @@
 			path = Lesson_1;
 			sourceTree = "<group>";
 		};
+		92591E0D2441F76700403608 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				92591E0E2441F7A600403608 /* NewsCell.swift */,
+				92591E102441F7C300403608 /* NewsController.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
 		92E05DC124388AE300FD5B0B /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				92E05DC224388BBE00FD5B0B /* Groups.swift */,
 				92E05DC424388E0100FD5B0B /* Users.swift */,
+				92591E12244232C200403608 /* News.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -223,6 +240,8 @@
 				923F01CB243527BF00FF759D /* GroupsTableViewController.swift in Sources */,
 				923848FA2433C6EE007F3F3A /* FriendsCell.swift in Sources */,
 				411E69DC2429229700B210DC /* AppDelegate.swift in Sources */,
+				92591E13244232C200403608 /* News.swift in Sources */,
+				92591E112441F7C300403608 /* NewsController.swift in Sources */,
 				92E05DC524388E0100FD5B0B /* Users.swift in Sources */,
 				928BAE822436417900475B0F /* GroupTo_Select_TableViewCell.swift in Sources */,
 				923F01CD243527E900FF759D /* GroupsCell.swift in Sources */,
@@ -230,6 +249,7 @@
 				925FCC5E243A0DA000FCFC09 /* HeartButton.swift in Sources */,
 				92E05DC72439143C00FD5B0B /* RoundFriend.swift in Sources */,
 				92E05DC324388BBE00FD5B0B /* Groups.swift in Sources */,
+				92591E0F2441F7A600403608 /* NewsCell.swift in Sources */,
 				923848F82433C632007F3F3A /* ListOfFriendsController.swift in Sources */,
 				411E69DE2429229700B210DC /* SceneDelegate.swift in Sources */,
 				412CF574242E99B40018647B /* MainTabBar.swift in Sources */,

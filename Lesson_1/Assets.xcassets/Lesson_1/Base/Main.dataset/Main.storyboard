@@ -164,10 +164,10 @@
                                                     <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                    <real key="value" value="0.0"/>
+                                                    <real key="value" value="1"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                    <real key="value" value="0.0"/>
+                                                    <real key="value" value="8"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
@@ -261,10 +261,10 @@
                                                     <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                    <real key="value" value="0.0"/>
+                                                    <real key="value" value="1"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                    <real key="value" value="0.0"/>
+                                                    <real key="value" value="8"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
@@ -436,14 +436,8 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="avatar" destination="bds-i2-z1n" id="8qd-2f-zBa"/>
-                                    <outlet property="comments" destination="ecF-7A-JTO" id="sTY-zK-UJa"/>
-                                    <outlet property="likes" destination="aKt-yL-Etu" id="sKz-Cv-ASs"/>
-                                    <outlet property="name" destination="H1d-NL-X7M" id="Avj-Oo-ZS2"/>
                                     <outlet property="newsImage" destination="hHr-AE-eGX" id="8Ry-lt-nQE"/>
-                                    <outlet property="shares" destination="awO-Bo-dGf" id="Z7A-rb-lsY"/>
                                     <outlet property="story" destination="OKx-kF-0O1" id="rbt-56-U2L"/>
-                                    <outlet property="time" destination="jc4-Er-0gF" id="hWK-9m-Nsj"/>
-                                    <outlet property="views" destination="Jgq-Z3-Z8z" id="A66-jw-hDL"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

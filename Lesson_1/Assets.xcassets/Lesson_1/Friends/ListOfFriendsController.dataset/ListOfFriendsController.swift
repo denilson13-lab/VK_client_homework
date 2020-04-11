@@ -45,22 +45,35 @@ class ListOfFriendsController: UITableViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
-        let usersDic = Dictionary.init(grouping: users) {$0.surname.prefix(1)}
+        let usersDic = Dictionary.init(grouping: users) {
+            $0.surname.prefix(1)
+        }
+        // Создание секций по словарю
         usersSection = usersDic.map {Section(title: String($0.key), items: $0.value)}
+        // Сортировка секций
         usersSection.sort {$0.title < $1.title}
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        isFiltering ? 1 : usersSection.count
+        usersSection.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        isFiltering ? filteredUsers.count : usersSection[section].items.count
+        if isFiltering {
+            return filteredUsers.count
+        }
+        return usersSection[section].items.count
     }
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath) as! FriendsCell
-        let user: User = isFiltering ? filteredUsers[indexPath.row] : usersSection[indexPath.section].items[indexPath.row]
+        let user: User
+        if isFiltering {
+            user = filteredUsers[indexPath.row]
+        } else {
+            user = usersSection[indexPath.section].items[indexPath.row]
+        }
         cell.friendName.text = "\(user.name) \(user.surname)"
         cell.friendFoto.image = user.avatar
         return cell
@@ -70,34 +83,38 @@ class ListOfFriendsController: UITableViewController {
         guard segue.identifier == "friendProfile" else { return }
         guard let destination = segue.destination as? FriendsCollectionViewController else { return }
         if let indexPath = tableView.indexPathForSelectedRow {
-            let user: User = isFiltering ? filteredUsers[indexPath.row] : users[indexPath.row]
+            let user: User
+            if isFiltering {
+                user = filteredUsers[indexPath.row]
+            } else {
+                user = users[indexPath.row]
+            }
             destination.photos = user.photos
             destination.title = "\(user.name) \(user.surname)"
         }
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        filteredUsers = users.filter { (user: User) -> Bool in
-            return (user.name + user.surname).lowercased().contains(searchText.lowercased())
+        filteredUsers = users.filter {
+            (user: User) -> Bool in
+            if user.name.lowercased().contains(searchText.lowercased()) ||
+                user.surname.lowercased().contains(searchText.lowercased()) {
+                return true
+            } else {
+                return false
+            }
         }
         tableView.reloadData()
     }
-
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
-        isFiltering ? "" : usersSection[section].title
+        return usersSection[section].title
     }
     
 //    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//            let headerView = UIView()
-//            let label = UILabel()
-//            headerView.backgroundColor = UIColor.lightGray
-//            headerView.alpha = 0.5
-//            label.frame = CGRect.init(x: 30, y: 20, width: headerView.frame.width-10, height: headerView.frame.height-10)
-//            label.text = usersSection[section].title
-//            label.textColor = UIColor.black
-//            label.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.thin)
-//            headerView.addSubview(label)
-//            return headerView
+//        let headerView = UIView()
+//        headerView.alpha = 0.5
+//        return headerView
 //    }
 }
 

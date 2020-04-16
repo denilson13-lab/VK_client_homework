@@ -28,12 +28,23 @@ class Heart: UIView {
     }
     
     @objc func buttonIsTapped(sender: UIButton) {
+        
         if heartCount.text == "0" {
-            heartCount.text = "1"
+            UIView.transition(with: heartCount,
+                              duration: 1.2,
+                              options: .transitionFlipFromLeft,
+                              animations: {
+                                self.heartCount.text = "1"
+            })
             heartCount.textColor = .red
             heart.setBackgroundImage(UIImage(named: "heartFilled"), for: .normal)}
         else {
-            heartCount.text = "0"
+            UIView.transition(with: heartCount,
+                              duration: 1.2,
+                              options: .transitionFlipFromRight,
+                              animations: {
+                                self.heartCount.text = "0"
+            })
             heartCount.textColor = .black
             heart.setBackgroundImage(UIImage(named: "heartEmpty"), for: .normal)}
     }

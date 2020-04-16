@@ -10,6 +10,7 @@ import UIKit
 
 class GroupsTableViewController: UITableViewController {
 
+    
     var groups: [Group] = [
         Group(name: "Художники", avatar: "artists"),
         Group(name: "Скульпторы", avatar: "sculpture"),

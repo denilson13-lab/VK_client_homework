@@ -70,7 +70,7 @@ class ListOfFriendsController: UITableViewController {
         guard segue.identifier == "friendProfile" else { return }
         guard let destination = segue.destination as? FriendsCollectionViewController else { return }
         if let indexPath = tableView.indexPathForSelectedRow {
-            let user: User = isFiltering ? filteredUsers[indexPath.row] : users[indexPath.row]
+            let user: User = isFiltering ? filteredUsers[indexPath.row] : usersSection[indexPath.section].items[indexPath.row]
             destination.photos = user.photos
             destination.title = "\(user.name) \(user.surname)"
         }

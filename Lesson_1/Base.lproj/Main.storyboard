@@ -8,10 +8,76 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Loading Screen-->
+        <scene sceneID="TXe-7F-y3m">
+            <objects>
+                <viewController id="43t-pe-4qM" customClass="LoadingScreen" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FX8-E9-ML6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9cr-r3-IdA" customClass="RoundFriend2" customModule="Lesson_1" customModuleProvider="target">
+                                <rect key="frame" x="154" y="389" width="20" height="20"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOn-1k-HoV" customClass="RoundFriend2" customModule="Lesson_1" customModuleProvider="target">
+                                <rect key="frame" x="192" y="389" width="20" height="20"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sEd-fn-Pcf" customClass="RoundFriend2" customModule="Lesson_1" customModuleProvider="target">
+                                <rect key="frame" x="229" y="389" width="20" height="20"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNH-cz-v4P">
+                                <rect key="frame" x="75" y="447" width="264" height="40"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Войти">
+                                    <color key="titleColor" red="0.092287167500000003" green="0.15117324900000001" blue="0.41687580959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="C7c-62-pLU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="MOn-1k-HoV" firstAttribute="leading" secondItem="9cr-r3-IdA" secondAttribute="trailing" constant="18" id="8vL-uK-7Hi"/>
+                            <constraint firstItem="sEd-fn-Pcf" firstAttribute="leading" secondItem="MOn-1k-HoV" secondAttribute="trailing" constant="17" id="BlL-4N-nm3"/>
+                            <constraint firstItem="nNH-cz-v4P" firstAttribute="leading" secondItem="fwE-kK-OPG" secondAttribute="leading" constant="75" id="Fft-Z9-SDC"/>
+                            <constraint firstItem="fwE-kK-OPG" firstAttribute="trailing" secondItem="sEd-fn-Pcf" secondAttribute="trailing" constant="165" id="K8m-Ga-QmT"/>
+                            <constraint firstItem="9cr-r3-IdA" firstAttribute="leading" secondItem="fwE-kK-OPG" secondAttribute="leading" constant="154" id="KF4-Gp-nuO"/>
+                            <constraint firstItem="MOn-1k-HoV" firstAttribute="centerX" secondItem="FX8-E9-ML6" secondAttribute="centerX" constant="-5" id="SE6-vP-FuG"/>
+                            <constraint firstItem="9cr-r3-IdA" firstAttribute="top" secondItem="MOn-1k-HoV" secondAttribute="top" id="anR-br-Vtb"/>
+                            <constraint firstItem="MOn-1k-HoV" firstAttribute="centerY" secondItem="FX8-E9-ML6" secondAttribute="centerY" constant="-5" id="fCu-8g-7f8"/>
+                            <constraint firstAttribute="trailing" secondItem="9cr-r3-IdA" secondAttribute="trailing" constant="240" id="k1p-xn-xCI"/>
+                            <constraint firstItem="9cr-r3-IdA" firstAttribute="centerY" secondItem="FX8-E9-ML6" secondAttribute="centerY" constant="-5" id="kWy-yk-aBo"/>
+                            <constraint firstItem="nNH-cz-v4P" firstAttribute="centerX" secondItem="FX8-E9-ML6" secondAttribute="centerX" id="ncS-T7-VrA"/>
+                            <constraint firstItem="nNH-cz-v4P" firstAttribute="top" secondItem="9cr-r3-IdA" secondAttribute="bottom" constant="38" id="rHF-bb-4hf"/>
+                            <constraint firstItem="9cr-r3-IdA" firstAttribute="top" secondItem="sEd-fn-Pcf" secondAttribute="top" id="sb5-I1-iwG"/>
+                            <constraint firstItem="9cr-r3-IdA" firstAttribute="top" secondItem="fwE-kK-OPG" secondAttribute="top" constant="389" id="wJy-fD-zUd"/>
+                            <constraint firstItem="fwE-kK-OPG" firstAttribute="bottom" secondItem="nNH-cz-v4P" secondAttribute="bottom" constant="287" id="y8U-dF-HfP"/>
+                            <constraint firstItem="sEd-fn-Pcf" firstAttribute="centerY" secondItem="FX8-E9-ML6" secondAttribute="centerY" constant="-5" id="zwu-7B-Oft"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fwE-kK-OPG"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="XOr-wK-kbv"/>
+                    <connections>
+                        <outlet property="enter" destination="nNH-cz-v4P" id="vTn-ac-fD7"/>
+                        <outlet property="first" destination="9cr-r3-IdA" id="MmU-3T-dav"/>
+                        <outlet property="second" destination="MOn-1k-HoV" id="01b-OV-9LQ"/>
+                        <outlet property="third" destination="sEd-fn-Pcf" id="7oV-70-t7q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CAi-yD-lwA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1194.2028985507247" y="95.758928571428569"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="sdm-RO-m9i">
             <objects>
                 <navigationController id="YBw-w6-r2g" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="w8Z-St-3cR"/>
                     <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="t21-ba-iqs">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -23,12 +89,12 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="99W-m9-Sip"/>
+                        <segue destination="43t-pe-4qM" kind="relationship" relationship="rootViewController" id="4Oy-oV-QSJ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BLQ-Na-9jZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1167" y="96"/>
+            <point key="canvasLocation" x="-1949" y="96"/>
         </scene>
         <!--ВКонтакте-->
         <scene sceneID="tne-QT-ifu">

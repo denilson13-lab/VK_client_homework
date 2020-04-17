@@ -49,6 +49,17 @@ final class ShadowFriend: UIView {
 //            layer.shadowRadius = newValue
 //        }
 //    }
+    func avatarAnimation() {
+        let animation = CASpringAnimation(keyPath: "transform.scale")
+        animation.fromValue = 0.8
+        animation.toValue = 1.0
+        animation.stiffness = 200
+        animation.mass = 2
+        animation.duration = 0.5
+        animation.beginTime = CACurrentMediaTime()
+        animation.fillMode = CAMediaTimingFillMode.backwards
+        layer.add(animation, forKey: nil)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,21 +74,11 @@ final class ShadowFriend: UIView {
         self.addGestureRecognizer(gesture)
     }
     
-    @objc func some() {
-        UIView.animate(withDuration: 0.2,
-                       delay: 0,
-                       options: [],
-                       animations: {self.layer.bounds = CGRect(x: -20, y: 0, width: 80, height: 80)}
-        )
-        UIView.animate(withDuration: 1,
-                       delay: 0.2,
-                       usingSpringWithDamping: 0.4,
-                       initialSpringVelocity: 0,
-                       options: [],
-                       animations: {self.layer.bounds = CGRect(x: 0, y: 0, width: 80, height: 80)}
-        )
+    @objc func some () {
+        avatarAnimation ()
     }
 }
+
 
 
 

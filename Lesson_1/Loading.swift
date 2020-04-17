@@ -1,24 +1,24 @@
-//
-//  LoadingScreen.swift
+
+//  Loading.swift
 //  Lesson_1
 //
-//  Created by Denis on 14.04.2020.
+//  Created by Denis on 17.04.2020.
 //  Copyright © 2020 Denis Skokov. All rights reserved.
-//
+
+
 
 import UIKit
 
-class LoadingScreen: UIViewController {
+class Loading: UIViewController {
+    
     @IBOutlet weak var first: UIView!
     @IBOutlet weak var second: UIView!
     @IBOutlet weak var third: UIView!
-    @IBOutlet weak var enter: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        enter.alpha = 0
+ 
         
         UIView.animate(
             withDuration: 1.0,
@@ -42,16 +42,7 @@ class LoadingScreen: UIViewController {
             completion: { _ in self.third.alpha += 1
         })
         DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3, execute: {
-            self.first.layer.removeAllAnimations()
-            self.second.layer.removeAllAnimations()
-            self.third.layer.removeAllAnimations()
+            self.performSegue(withIdentifier: "Next", sender: self)
         })
-        UIView.animate(
-            withDuration: 1.0,
-            delay: 3.0,
-            animations: {self.enter.alpha += 1}
-        )
     }
 }
-
-

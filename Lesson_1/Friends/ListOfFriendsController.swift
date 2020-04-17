@@ -16,7 +16,7 @@ struct Section <T> {
 class ListOfFriendsController: UITableViewController {
     
     
-    var users: [User] = [
+    let users: [User] = [
         User(name: "Леонардо", surname: "Да Винчи", avatar: "daVinci"),
         User(name: "Клод", surname: "Моне", avatar: "mone"),
         User(name: "Эдвард", surname: "Мунк", avatar: "munch"),
@@ -87,18 +87,22 @@ class ListOfFriendsController: UITableViewController {
         isFiltering ? "" : usersSection[section].title
     }
     
-//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//            let headerView = UIView()
-//            let label = UILabel()
-//            headerView.backgroundColor = UIColor.lightGray
-//            headerView.alpha = 0.5
-//            label.frame = CGRect.init(x: 30, y: 20, width: headerView.frame.width-10, height: headerView.frame.height-10)
-//            label.text = usersSection[section].title
-//            label.textColor = UIColor.black
-//            label.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.thin)
-//            headerView.addSubview(label)
-//            return headerView
-//    }
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        let label = UILabel()
+        headerView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+        label.text = usersSection[section].title
+        label.textColor = UIColor.black
+        label.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.thin)
+        headerView.addSubview(label)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            label.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+            label.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
+            label.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
+        ])
+        return headerView
+    }
 }
 
 extension ListOfFriendsController: UISearchResultsUpdating {

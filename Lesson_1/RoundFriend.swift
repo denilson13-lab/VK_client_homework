@@ -13,42 +13,11 @@ final class RoundFriend2: UIImageView {
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = bounds.height / 2
-        
     }
 }
 
 final class ShadowFriend: UIView {
     
-//    @IBInspectable
-//    var shadowColor: UIColor {
-//        get {
-//            return UIColor(cgColor: layer.shadowColor!)
-//        }
-//        set {
-//            layer.shadowColor = newValue.cgColor
-//        }
-//    }
-//    
-//    
-//    @IBInspectable
-//    var shadowOpacity: Float {
-//        get {
-//            return layer.shadowOpacity
-//        }
-//        set {
-//            layer.shadowOpacity = newValue
-//        }
-//    }
-//    
-//    @IBInspectable
-//    var shadowRadius: CGFloat {
-//        get {
-//            return layer.shadowRadius
-//        }
-//        set {
-//            layer.shadowRadius = newValue
-//        }
-//    }
     func avatarAnimation() {
         let animation = CASpringAnimation(keyPath: "transform.scale")
         animation.fromValue = 0.8
@@ -77,6 +46,36 @@ final class ShadowFriend: UIView {
     @objc func some () {
         avatarAnimation ()
     }
+        @IBInspectable
+        var shadowColor: UIColor {
+            get {
+                return UIColor(cgColor: layer.shadowColor!)
+            }
+            set {
+                layer.shadowColor = newValue.cgColor
+            }
+        }
+    
+    
+        @IBInspectable
+        var shadowOpacity: Float {
+            get {
+                return layer.shadowOpacity
+            }
+            set {
+                layer.shadowOpacity = newValue
+            }
+        }
+    
+        @IBInspectable
+        var shadowRadius: CGFloat {
+            get {
+                return layer.shadowRadius
+            }
+            set {
+                layer.shadowRadius = newValue
+            }
+        }
 }
 
 

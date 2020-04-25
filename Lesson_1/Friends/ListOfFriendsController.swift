@@ -82,7 +82,7 @@ class ListOfFriendsController: UITableViewController {
         }
         tableView.reloadData()
     }
-
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
         isFiltering ? "" : usersSection[section].title
     }
@@ -111,5 +111,20 @@ extension ListOfFriendsController: UISearchResultsUpdating {
         filterContentForSearchText(searchBar.text!)
     }
 }
-
+//
+//extension ListOfFriendsController: UIViewControllerTransitioningDelegate {
+//    func animationController(
+//        forPresented presented: UIViewController,
+//        presenting: UIViewController,
+//        source: UIViewController
+//    ) -> UIViewControllerAnimatedTransitioning? {
+//        return Animator()
+//    }
+//
+//    func animationController(
+//        forDismissed dismissed: UIViewController
+//    ) -> UIViewControllerAnimatedTransitioning? {
+//        return Animator()
+//    }
+//}
 

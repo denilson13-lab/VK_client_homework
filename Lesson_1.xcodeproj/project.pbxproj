@@ -13,6 +13,8 @@
 		411E69E32429229700B210DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 411E69E12429229700B210DC /* Main.storyboard */; };
 		411E69E8242922A100B210DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 411E69E6242922A100B210DC /* LaunchScreen.storyboard */; };
 		412CF574242E99B40018647B /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412CF573242E99B40018647B /* MainTabBar.swift */; };
+		920FA7BE24545AF000E85C95 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920FA7BD24545AF000E85C95 /* Navigation.swift */; };
+		920FA7C02454A7A300E85C95 /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920FA7BF2454A7A300E85C95 /* InteractiveTransition.swift */; };
 		923848F82433C632007F3F3A /* ListOfFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923848F72433C632007F3F3A /* ListOfFriendsController.swift */; };
 		923848FA2433C6EE007F3F3A /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923848F92433C6EE007F3F3A /* FriendsCell.swift */; };
 		92398994243519D300EAA259 /* FriendsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92398993243519D300EAA259 /* FriendsCollectionViewController.swift */; };
@@ -42,6 +44,8 @@
 		411E69E7242922A100B210DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		411E69E9242922A100B210DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		412CF573242E99B40018647B /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
+		920FA7BD24545AF000E85C95 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Navigation.swift; path = Lesson_1/Navigation.swift; sourceTree = SOURCE_ROOT; };
+		920FA7BF2454A7A300E85C95 /* InteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTransition.swift; sourceTree = "<group>"; };
 		923848F72433C632007F3F3A /* ListOfFriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfFriendsController.swift; sourceTree = "<group>"; };
 		923848F92433C6EE007F3F3A /* FriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		92398993243519D300EAA259 /* FriendsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewController.swift; sourceTree = "<group>"; };
@@ -102,9 +106,11 @@
 				411E69DD2429229700B210DC /* SceneDelegate.swift */,
 				411E69DF2429229700B210DC /* Login.swift */,
 				411E69E12429229700B210DC /* Main.storyboard */,
+				920FA7BF2454A7A300E85C95 /* InteractiveTransition.swift */,
 				923E5421244A41790006F8A2 /* Loading.swift */,
 				92C39AA22433E49600BFA1BF /* Assets.xcassets */,
 				411E69E6242922A100B210DC /* LaunchScreen.storyboard */,
+				920FA7BD24545AF000E85C95 /* Navigation.swift */,
 				92E05DC62439143C00FD5B0B /* RoundFriend.swift */,
 				411E69E9242922A100B210DC /* Info.plist */,
 			);
@@ -243,6 +249,7 @@
 				411E69E02429229700B210DC /* Login.swift in Sources */,
 				92398994243519D300EAA259 /* FriendsCollectionViewController.swift in Sources */,
 				923E5422244A41790006F8A2 /* Loading.swift in Sources */,
+				920FA7BE24545AF000E85C95 /* Navigation.swift in Sources */,
 				928BAE8024363F6E00475B0F /* Group_Select_TableViewController.swift in Sources */,
 				923F01CB243527BF00FF759D /* GroupsTableViewController.swift in Sources */,
 				923848FA2433C6EE007F3F3A /* FriendsCell.swift in Sources */,
@@ -253,6 +260,7 @@
 				928BAE822436417900475B0F /* GroupTo_Select_TableViewCell.swift in Sources */,
 				923F01CD243527E900FF759D /* GroupsCell.swift in Sources */,
 				9239899624351B5B00EAA259 /* FriendsCollectionViewCell.swift in Sources */,
+				920FA7C02454A7A300E85C95 /* InteractiveTransition.swift in Sources */,
 				925FCC5E243A0DA000FCFC09 /* HeartButton.swift in Sources */,
 				92E05DC72439143C00FD5B0B /* RoundFriend.swift in Sources */,
 				923E5428244AE3310006F8A2 /* GalleryViewController.swift in Sources */,

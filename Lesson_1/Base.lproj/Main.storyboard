@@ -254,7 +254,7 @@
                                 <connections>
                                     <outlet property="friendFoto" destination="rZd-zA-Ae4" id="9jY-l3-4nX"/>
                                     <outlet property="friendName" destination="Kkp-X1-PrG" id="xM2-98-SmT"/>
-                                    <segue destination="Pn9-ID-HiF" kind="show" id="thG-pi-Ilt"/>
+                                    <segue destination="yvc-mm-hN6" kind="show" identifier="friendProfile" id="jKS-RP-3L7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -315,12 +315,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b6O-qo-JoM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2805.7971014492755" y="-228.34821428571428"/>
+            <point key="canvasLocation" x="3497" y="-228"/>
         </scene>
         <!--Группы-->
         <scene sceneID="yeP-GT-2ZU">
             <objects>
-                <navigationController id="Emb-wx-BFd" sceneMemberID="viewController">
+                <navigationController id="Emb-wx-BFd" customClass="Navigation" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Группы" image="link" catalog="system" id="MgK-AT-Ev8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Qz-2U-eVL">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -585,7 +585,7 @@
         <!--Новости-->
         <scene sceneID="pf4-gp-nl3">
             <objects>
-                <navigationController id="xkU-gG-ihH" sceneMemberID="viewController">
+                <navigationController id="xkU-gG-ihH" customClass="Navigation" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Новости" image="rectangle.dock" catalog="system" selectedImage="rectangle.dock" id="gdK-Ub-5vN"/>
                     <navigationItem key="navigationItem" id="NlD-Pq-hu5"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lYF-Ql-wID">
@@ -662,7 +662,7 @@
         <!--Друзья-->
         <scene sceneID="6LS-LM-w2f">
             <objects>
-                <navigationController id="3UV-fN-wmY" sceneMemberID="viewController">
+                <navigationController id="3UV-fN-wmY" customClass="Navigation" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Друзья" image="person.2" catalog="system" id="Tbv-Pv-IOo"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="t8R-cY-mZU">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -677,7 +677,7 @@
             </objects>
             <point key="canvasLocation" x="1291" y="-228"/>
         </scene>
-        <!--Профиль друга-->
+        <!--Фото-->
         <scene sceneID="6KN-pU-Ew0">
             <objects>
                 <collectionViewController id="yvc-mm-hN6" customClass="FriendsCollectionViewController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -730,11 +730,18 @@
                             <outlet property="delegate" destination="yvc-mm-hN6" id="6h7-AI-zFH"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Профиль друга" id="OBT-Sd-0Su"/>
+                    <navigationItem key="navigationItem" title="Фото" id="VbO-rS-0Te">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="heart" catalog="system" id="ywL-vt-vwp">
+                            <color key="tintColor" red="0.092287167500000003" green="0.15117324900000001" blue="0.41687580959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="Pn9-ID-HiF" kind="show" id="dKg-bV-PX3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="scN-HJ-trp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2807" y="-993"/>
+            <point key="canvasLocation" x="2780" y="-228"/>
         </scene>
         <!--Main Tab Bar-->
         <scene sceneID="TEM-6g-6fe">

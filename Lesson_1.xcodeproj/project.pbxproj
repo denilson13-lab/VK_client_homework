@@ -30,6 +30,7 @@
 		928BAE8024363F6E00475B0F /* Group_Select_TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928BAE7F24363F6E00475B0F /* Group_Select_TableViewController.swift */; };
 		928BAE822436417900475B0F /* GroupTo_Select_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928BAE812436417900475B0F /* GroupTo_Select_TableViewCell.swift */; };
 		92C39AA32433E49600BFA1BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92C39AA22433E49600BFA1BF /* Assets.xcassets */; };
+		92C8AE47245C110800081440 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C8AE46245C110800081440 /* Session.swift */; };
 		92E05DC324388BBE00FD5B0B /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E05DC224388BBE00FD5B0B /* Groups.swift */; };
 		92E05DC524388E0100FD5B0B /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E05DC424388E0100FD5B0B /* Users.swift */; };
 		92E05DC72439143C00FD5B0B /* RoundFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E05DC62439143C00FD5B0B /* RoundFriend.swift */; };
@@ -61,6 +62,7 @@
 		928BAE7F24363F6E00475B0F /* Group_Select_TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group_Select_TableViewController.swift; sourceTree = "<group>"; };
 		928BAE812436417900475B0F /* GroupTo_Select_TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTo_Select_TableViewCell.swift; sourceTree = "<group>"; };
 		92C39AA22433E49600BFA1BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		92C8AE46245C110800081440 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		92E05DC224388BBE00FD5B0B /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
 		92E05DC424388E0100FD5B0B /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		92E05DC62439143C00FD5B0B /* RoundFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundFriend.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			children = (
 				92E05DC224388BBE00FD5B0B /* Groups.swift */,
 				92E05DC424388E0100FD5B0B /* Users.swift */,
+				92C8AE46245C110800081440 /* Session.swift */,
 				92591E12244232C200403608 /* News.swift */,
 			);
 			path = Models;
@@ -266,6 +269,7 @@
 				923E5428244AE3310006F8A2 /* GalleryViewController.swift in Sources */,
 				92E05DC324388BBE00FD5B0B /* Groups.swift in Sources */,
 				92591E0F2441F7A600403608 /* NewsCell.swift in Sources */,
+				92C8AE47245C110800081440 /* Session.swift in Sources */,
 				923848F82433C632007F3F3A /* ListOfFriendsController.swift in Sources */,
 				411E69DE2429229700B210DC /* SceneDelegate.swift in Sources */,
 				412CF574242E99B40018647B /* MainTabBar.swift in Sources */,

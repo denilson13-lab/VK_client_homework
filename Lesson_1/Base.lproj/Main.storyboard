@@ -188,6 +188,7 @@
                         <outlet property="loginInput" destination="FOF-n5-uI5" id="mDV-Zh-i7f"/>
                         <outlet property="passwordInput" destination="4p0-Hs-e9Q" id="zGu-tH-Ie1"/>
                         <outlet property="scrollBottomConstraint" destination="ML6-Zs-077" id="14X-bL-K9N"/>
+                        <outlet property="sessionName" destination="D6H-Fn-RZN" id="hKu-dI-ESf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

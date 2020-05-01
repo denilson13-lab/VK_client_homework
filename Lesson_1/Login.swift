@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var scrollBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var loginInput: UITextField!
@@ -35,8 +35,15 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var sessionName: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
+        let session = Session.instance
+        session.name = "Денис Валерьевич"
+        sessionName.text = session.name
         
         NotificationCenter.default.addObserver(
             self,

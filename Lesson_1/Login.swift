@@ -55,6 +55,7 @@ class ViewController: UIViewController {
             selector: #selector(keyboardWillBeHidden(notification:)),
             name: UIResponder.keyboardWillHideNotification,
             object: nil)
+        
         }
 
     @objc func keyboardWasShown(notification: Notification) {
@@ -66,5 +67,14 @@ class ViewController: UIViewController {
     @objc func keyboardWillBeHidden(notification: Notification) {
         scrollBottomConstraint.constant = 0
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    
 }
 

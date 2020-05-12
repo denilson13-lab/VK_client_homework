@@ -37,7 +37,10 @@ class Heart: UIView {
                                 self.heartCount.text = "1"
             })
             heartCount.textColor = .red
-            heart.setBackgroundImage(UIImage(named: "heartFilled"), for: .normal)}
+            heart.setBackgroundImage(UIImage(named: "heartFilled"), for: .normal)
+            print(heartCount.text)
+        }
+
         else {
             UIView.transition(with: heartCount,
                               duration: 1.2,
@@ -46,6 +49,8 @@ class Heart: UIView {
                                 self.heartCount.text = "0"
             })
             heartCount.textColor = .black
-            heart.setBackgroundImage(UIImage(named: "heartEmpty"), for: .normal)}
+            heart.setBackgroundImage(UIImage(named: "heartEmpty"), for: .normal)
+            print(heartCount.text)
+        }
     }
 }

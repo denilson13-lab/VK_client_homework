@@ -90,10 +90,10 @@ class ListOfFriendsController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         let label = UILabel()
-        headerView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+        headerView.backgroundColor = UIColor.systemGray5
         label.text = usersSection[section].title
         label.textColor = UIColor.black
-        label.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.thin)
+        label.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.medium)
         headerView.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

@@ -40,10 +40,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        let session = Session.instance
-        session.name = "Денис Валерьевич"
-        sessionName.text = session.name
         
         NotificationCenter.default.addObserver(
             self,

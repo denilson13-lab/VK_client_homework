@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YBw-w6-r2g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8RJ-cW-Uhe">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -194,6 +194,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-394" y="96"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="lyU-xc-UKe">
+            <objects>
+                <viewController id="8RJ-cW-Uhe" customClass="WebViewController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DYm-Y5-jRn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyF-5o-7Cl">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="vyF-5o-7Cl" firstAttribute="trailing" secondItem="jyF-dh-lZG" secondAttribute="trailing" id="FYF-hl-dOg"/>
+                            <constraint firstItem="vyF-5o-7Cl" firstAttribute="leading" secondItem="jyF-dh-lZG" secondAttribute="leading" id="OzV-5m-Ixg"/>
+                            <constraint firstAttribute="bottom" secondItem="vyF-5o-7Cl" secondAttribute="bottom" id="h8a-58-8y1"/>
+                            <constraint firstItem="vyF-5o-7Cl" firstAttribute="top" secondItem="DYm-Y5-jRn" secondAttribute="top" id="tpQ-by-Rai"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jyF-dh-lZG"/>
+                    </view>
+                    <connections>
+                        <outlet property="webview" destination="vyF-5o-7Cl" id="80o-Ta-Za2"/>
+                        <segue destination="981-xx-ZQL" kind="presentation" identifier="Next2" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="R1i-DK-PCE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wcl-Cd-X8z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-820" y="774"/>
         </scene>
         <!--Мои друзья-->
         <scene sceneID="mQh-Kp-agb">
@@ -766,6 +801,9 @@
             <point key="canvasLocation" x="372" y="96"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="R1i-DK-PCE"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.right" catalog="system" width="128" height="106"/>
         <image name="artists" width="364" height="372"/>

@@ -10,6 +10,9 @@ import UIKit
 
 class GalleryViewController: UIViewController {
     
+    let dataLoader = DataLoader()
+    let session = Session.instance
+    
     @IBOutlet weak var picture: UIImageView!
     @IBOutlet weak var pictureContraint: NSLayoutConstraint!
     @IBOutlet weak var pictureWidthConstraint: NSLayoutConstraint!
@@ -24,6 +27,8 @@ class GalleryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataLoader.loadPhoto(token: session.token)
+        
         self.picture.image = UIImage(named: pictureArray[0])
         
         

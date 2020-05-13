@@ -15,6 +15,8 @@ struct Section <T> {
 
 class ListOfFriendsController: UITableViewController {
     
+    let dataLoader = DataLoader()
+    let session = Session.instance
     
     let users: [User] = [
         User(name: "Леонардо", surname: "Да Винчи", avatar: "daVinci"),
@@ -24,21 +26,20 @@ class ListOfFriendsController: UITableViewController {
     ]
     
     var filteredUsers: [User] = []
-    
     var usersSection = [Section<User>]()
-    
     let searchController = UISearchController(searchResultsController: nil)
-    
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
-    
     var isFiltering: Bool {
         return searchController.isActive && !isSearchBarEmpty
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dataLoader.loadFriendsList(token: session.token)
+        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"

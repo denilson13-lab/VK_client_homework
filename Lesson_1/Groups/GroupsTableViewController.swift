@@ -10,6 +10,8 @@ import UIKit
 
 class GroupsTableViewController: UITableViewController {
 
+    let dataLoader = DataLoader()
+    let session = Session.instance
     
     var groups: [Group] = [
         Group(name: "Художники", avatar: "artists"),
@@ -31,6 +33,9 @@ class GroupsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dataLoader.loadGroups(token: session.token)
+        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"

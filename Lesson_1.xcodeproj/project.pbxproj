@@ -17,7 +17,7 @@
 		920FA7BE24545AF000E85C95 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920FA7BD24545AF000E85C95 /* Navigation.swift */; };
 		920FA7C02454A7A300E85C95 /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920FA7BF2454A7A300E85C95 /* InteractiveTransition.swift */; };
 		921F14A1246B1CA000F182B4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921F14A0246B1CA000F182B4 /* WebKit.framework */; };
-		921F14A3246C697C00F182B4 /* VKLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F14A2246C697C00F182B4 /* VKLoader.swift */; };
+		921F14A3246C697C00F182B4 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F14A2246C697C00F182B4 /* Photo.swift */; };
 		923848F82433C632007F3F3A /* ListOfFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923848F72433C632007F3F3A /* ListOfFriendsController.swift */; };
 		923848FA2433C6EE007F3F3A /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923848F92433C6EE007F3F3A /* FriendsCell.swift */; };
 		92398994243519D300EAA259 /* FriendsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92398993243519D300EAA259 /* FriendsCollectionViewController.swift */; };
@@ -52,10 +52,10 @@
 		412CF573242E99B40018647B /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		5CBDADE6375813282E498311 /* Pods-Lesson_1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lesson_1.debug.xcconfig"; path = "Target Support Files/Pods-Lesson_1/Pods-Lesson_1.debug.xcconfig"; sourceTree = "<group>"; };
 		679EE3F343F46DD5493FDE98 /* Pods-Lesson_1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lesson_1.release.xcconfig"; path = "Target Support Files/Pods-Lesson_1/Pods-Lesson_1.release.xcconfig"; sourceTree = "<group>"; };
-		920FA7BD24545AF000E85C95 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Navigation.swift; path = Lesson_1/Navigation.swift; sourceTree = SOURCE_ROOT; };
+		920FA7BD24545AF000E85C95 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Navigation.swift; path = Lesson_1/UX/Navigation.swift; sourceTree = SOURCE_ROOT; };
 		920FA7BF2454A7A300E85C95 /* InteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTransition.swift; sourceTree = "<group>"; };
 		921F14A0246B1CA000F182B4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		921F14A2246C697C00F182B4 /* VKLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoader.swift; sourceTree = "<group>"; };
+		921F14A2246C697C00F182B4 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		923848F72433C632007F3F3A /* ListOfFriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfFriendsController.swift; sourceTree = "<group>"; };
 		923848F92433C6EE007F3F3A /* FriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		92398993243519D300EAA259 /* FriendsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +121,7 @@
 		411E69DA2429229700B210DC /* Lesson_1 */ = {
 			isa = PBXGroup;
 			children = (
+				9254928B2471706200027D64 /* UX */,
 				92591E0D2441F76700403608 /* News */,
 				92EF11CC243D103A005EB9FF /* Navigation */,
 				92EF11CB243D0FDE005EB9FF /* Groups */,
@@ -131,14 +132,8 @@
 				411E69DD2429229700B210DC /* SceneDelegate.swift */,
 				411E69DF2429229700B210DC /* Login.swift */,
 				411E69E12429229700B210DC /* Main.storyboard */,
-				921F14A2246C697C00F182B4 /* VKLoader.swift */,
 				92AED924246B09DF0071FB64 /* WebViewController.swift */,
-				920FA7BF2454A7A300E85C95 /* InteractiveTransition.swift */,
-				923E5421244A41790006F8A2 /* Loading.swift */,
 				92C39AA22433E49600BFA1BF /* Assets.xcassets */,
-				411E69E6242922A100B210DC /* LaunchScreen.storyboard */,
-				920FA7BD24545AF000E85C95 /* Navigation.swift */,
-				92E05DC62439143C00FD5B0B /* RoundFriend.swift */,
 				411E69E9242922A100B210DC /* Info.plist */,
 			);
 			path = Lesson_1;
@@ -151,6 +146,18 @@
 				3B73F2387E45557CD1B73376 /* Pods_Lesson_1.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9254928B2471706200027D64 /* UX */ = {
+			isa = PBXGroup;
+			children = (
+				411E69E6242922A100B210DC /* LaunchScreen.storyboard */,
+				920FA7BD24545AF000E85C95 /* Navigation.swift */,
+				92E05DC62439143C00FD5B0B /* RoundFriend.swift */,
+				923E5421244A41790006F8A2 /* Loading.swift */,
+				920FA7BF2454A7A300E85C95 /* InteractiveTransition.swift */,
+			);
+			path = UX;
 			sourceTree = "<group>";
 		};
 		92591E0D2441F76700403608 /* News */ = {
@@ -167,6 +174,7 @@
 			children = (
 				92E05DC224388BBE00FD5B0B /* Groups.swift */,
 				92E05DC424388E0100FD5B0B /* Users.swift */,
+				921F14A2246C697C00F182B4 /* Photo.swift */,
 				92C8AE46245C110800081440 /* Session.swift */,
 				92591E12244232C200403608 /* News.swift */,
 			);
@@ -345,7 +353,7 @@
 				920FA7C02454A7A300E85C95 /* InteractiveTransition.swift in Sources */,
 				925FCC5E243A0DA000FCFC09 /* HeartButton.swift in Sources */,
 				92E05DC72439143C00FD5B0B /* RoundFriend.swift in Sources */,
-				921F14A3246C697C00F182B4 /* VKLoader.swift in Sources */,
+				921F14A3246C697C00F182B4 /* Photo.swift in Sources */,
 				923E5428244AE3310006F8A2 /* GalleryViewController.swift in Sources */,
 				92E05DC324388BBE00FD5B0B /* Groups.swift in Sources */,
 				92591E0F2441F7A600403608 /* NewsCell.swift in Sources */,

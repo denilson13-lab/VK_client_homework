@@ -10,8 +10,6 @@ import UIKit
 
 class GalleryViewController: UIViewController {
     
-    let dataLoader = DataLoader()
-    let session = Session.instance
     
     @IBOutlet weak var picture: UIImageView!
     @IBOutlet weak var pictureContraint: NSLayoutConstraint!
@@ -21,13 +19,12 @@ class GalleryViewController: UIViewController {
     @IBOutlet weak var nextPictureWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var pictureNext: UIImageView!
     
-    let pictureArray = ["scientists","authors","medics","artists","sculpture"]
-    
+
     var currentImage = 0
+    var pictureArray = ["dali", "mone", "munch"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataLoader.loadPhoto(token: session.token)
         
         self.picture.image = UIImage(named: pictureArray[0])
         
@@ -69,7 +66,7 @@ class GalleryViewController: UIViewController {
                                     self.pictureWidthConstraint.constant -= 100
                                     
                                     self.pictureNext.superview?.layoutIfNeeded()
-
+                                    
                             })
                             
                             UIView.addKeyframe(
@@ -165,7 +162,7 @@ class GalleryViewController: UIViewController {
                                     self.pictureWidthConstraint.constant -= 100
                                     
                                     self.pictureNext.superview?.layoutIfNeeded()
-
+                                    
                             })
                             
                             UIView.addKeyframe(

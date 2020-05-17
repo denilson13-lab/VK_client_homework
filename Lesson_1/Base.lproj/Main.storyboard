@@ -388,7 +388,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zb1-jE-2H2">
-                                            <rect key="frame" x="100" y="27.5" width="42" height="21"/>
+                                            <rect key="frame" x="90" y="27.5" width="304" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -423,12 +423,12 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Zb1-jE-2H2" firstAttribute="leading" secondItem="NUP-2b-bxP" secondAttribute="leadingMargin" constant="80" id="3sT-nK-1hX"/>
+                                        <constraint firstItem="Zb1-jE-2H2" firstAttribute="leading" secondItem="NUP-2b-bxP" secondAttribute="leadingMargin" constant="70" id="3sT-nK-1hX"/>
                                         <constraint firstItem="d7o-Pd-FTx" firstAttribute="leading" secondItem="NUP-2b-bxP" secondAttribute="leading" constant="20" id="FUf-at-vHv"/>
                                         <constraint firstItem="d7o-Pd-FTx" firstAttribute="centerY" secondItem="NUP-2b-bxP" secondAttribute="centerY" id="I56-fj-Qmk"/>
                                         <constraint firstItem="Zb1-jE-2H2" firstAttribute="centerY" secondItem="NUP-2b-bxP" secondAttribute="centerY" id="Ink-Pk-gNc"/>
+                                        <constraint firstAttribute="trailing" secondItem="Zb1-jE-2H2" secondAttribute="trailing" constant="20" id="dat-iW-YaJ"/>
                                         <constraint firstAttribute="bottom" secondItem="d7o-Pd-FTx" secondAttribute="bottom" priority="750" constant="10" id="hQW-6m-dgj"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Zb1-jE-2H2" secondAttribute="trailing" priority="750" constant="252" id="hrD-3e-lyT"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <viewLayoutGuide key="safeArea" id="kHo-6f-jbh"/>

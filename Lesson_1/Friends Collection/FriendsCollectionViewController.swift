@@ -12,10 +12,21 @@ private let reuseIdentifier = "Cell"
 
 class FriendsCollectionViewController: UICollectionViewController {
     
-    var photos = [UIImage]()
+    var ownerID = 0
+    
+    let photoLoader = PhotoLoader()
+    let session = Session.instance
+    var myPhotos = [MyPhoto]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        photoLoader.loadPhoto(token: session.token, ownerID: ownerID) { [weak self] photo in
+            self?.myPhotos = photo
+            self?.collectionView.reloadData()
+        }
+        
+        
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 
@@ -25,12 +36,24 @@ class FriendsCollectionViewController: UICollectionViewController {
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        return myPhotos.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendsCollectionViewCell", for: indexPath) as! FriendsCollectionViewCell
-        cell.largeFoto.image = photos[indexPath.row]
+        
+        let user = myPhotos[indexPath.row]
+        
+        let session = URLSession.shared
+        let userPhotoUrl = user.photo
+        session.downloadTask(with: URL(string: userPhotoUrl)!) { (url, response, error) in
+            let data = try! Data(contentsOf: url!)
+            let image = UIImage(data: data)
+            DispatchQueue.main.async {
+                cell.largeFoto.image = image
+            }
+        }.resume()
+        
         return cell
     }
 }

@@ -10,8 +10,6 @@ import UIKit
 
 class Group_Select_TableViewController: UITableViewController {
 
-    let dataLoader = DataLoader()
-    let session = Session.instance
     
     var group: [Group] = [
           Group(name: "Ученые", avatar: "scientists"),
@@ -23,7 +21,6 @@ class Group_Select_TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataLoader.loadGroupsForSearch(token: session.token)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

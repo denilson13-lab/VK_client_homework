@@ -7,6 +7,7 @@
 //
 
 import Alamofire
+import RealmSwift
 
 struct PhotoFinalResponse: Decodable {
     let response: PhotoItemResponse
@@ -16,9 +17,9 @@ struct PhotoItemResponse: Decodable {
     let items: [MyPhoto]
 }
 
-struct MyPhoto: Decodable {
-    var photo = ""
-    var type = ""
+class MyPhoto: Object, Decodable {
+    @objc dynamic var photo = ""
+    @objc dynamic var type = ""
     
     enum FirstStageKeys: String, CodingKey {
         case sizes = "sizes"
@@ -30,8 +31,9 @@ struct MyPhoto: Decodable {
     }
     
     
-    init(from decoder: Decoder) throws {
+    required convenience init(from decoder: Decoder) throws {
         
+        self.init()
         let photoContainer = try decoder.container(keyedBy: FirstStageKeys.self)
         var sizesArray = try photoContainer.nestedUnkeyedContainer(forKey: .sizes)
         let sizesValue = try sizesArray.nestedContainer(keyedBy: SecondStageKeys.self)
@@ -53,10 +55,11 @@ class PhotoLoader {
             "v": "5.103"
         ]
         let url = baseUrl+path
-        AF.request(url, method: .get, parameters: parameters).responseData { response in
+        AF.request(url, method: .get, parameters: parameters).responseData { [weak self] response in
             
             do {
                 let photo = try JSONDecoder().decode(PhotoFinalResponse.self, from: response.value!)
+                self?.savePhotoData(photo.response.items)
                 completion(photo.response.items)
                 print(photo)
             } catch {
@@ -65,6 +68,18 @@ class PhotoLoader {
             
         }
     }
+    
+    func savePhotoData(_ photos: [MyPhoto]) {
+        do {
+            let realm = try Realm()
+            realm.beginWrite()
+            realm.add(photos)
+            try realm.commitWrite()
+        } catch {
+            print(error)
+        }
+    }
+    
 }
 
 

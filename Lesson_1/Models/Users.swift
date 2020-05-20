@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
 
 struct FriendsFinalResponse: Decodable {
     let response: ItemResponse
@@ -17,11 +18,11 @@ struct ItemResponse: Decodable {
     let items: [MyFriend]
 }
 
-struct MyFriend: Decodable {
-    var id = 0
-    var name = ""
-    var surname = ""
-    var photo = ""
+class MyFriend: Object, Decodable {
+    @objc dynamic var id = 0
+    @objc dynamic var name = ""
+    @objc dynamic var surname = ""
+    @objc dynamic var photo = ""
     
         enum SecondStageKeys: String, CodingKey {
             case id = "id"
@@ -30,14 +31,18 @@ struct MyFriend: Decodable {
             case photo = "photo_200_orig"
         }
         
-    init(from decoder: Decoder) throws {
+    required convenience init(from decoder: Decoder) throws {
         
+        self.init()
         let frendsContainer = try decoder.container(keyedBy: SecondStageKeys.self)
         self.id = try frendsContainer.decode(Int.self, forKey: .id)
         self.name = try frendsContainer.decode(String.self, forKey: .name)
         self.surname = try frendsContainer.decode(String.self, forKey: .surname)
         self.photo = try frendsContainer.decode(String.self, forKey: .photo)
     }
+    
+    
+
 }
 
 class FriendsLoader {
@@ -52,10 +57,11 @@ class FriendsLoader {
             "v": "5.103"
         ]
         let url = baseUrl+path
-        AF.request(url, method: .get, parameters: parameters).responseData { response in
+        AF.request(url, method: .get, parameters: parameters).responseData { [weak self] response in
             
             do {
                 let friend = try JSONDecoder().decode(FriendsFinalResponse.self, from: response.value!)
+                self?.saveFriendsData(friend.response.items)
                 completion(friend.response.items)
                 print(friend)
             } catch {
@@ -64,4 +70,16 @@ class FriendsLoader {
             
         }
     }
+    
+    func saveFriendsData(_ friends: [MyFriend]) {
+        do {
+            let realm = try Realm()
+            realm.beginWrite()
+            realm.add(friends)
+            try realm.commitWrite()
+        } catch {
+            print(error)
+        }
+    }
+    
 }

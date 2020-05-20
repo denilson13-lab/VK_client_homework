@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 struct Section <T> {
     var title: String
@@ -66,15 +67,9 @@ class ListOfFriendsController: UITableViewController {
         
         cell.friendName.text = "\(user.name) \(user.surname)"
         
-        let session = URLSession.shared
-        let userPhotoUrl = user.photo
-        session.downloadTask(with: URL(string: userPhotoUrl)!) { (url, response, error) in
-            let data = try! Data(contentsOf: url!)
-            let image = UIImage(data: data)
-            DispatchQueue.main.async {
-                cell.friendFoto.image = image
-            }
-        }.resume()
+        if let photoUrl = URL(string: user.photo) {
+            cell.friendFoto.af.setImage(withURL: photoUrl)
+        }
         
         return cell
     }

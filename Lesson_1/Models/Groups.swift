@@ -41,7 +41,7 @@ class GroupsLoader {
     
     let baseUrl = "https://api.vk.com"
     
-    func loadGroups(token: String, completion: @escaping ([MyGroup]) -> Void ){
+    func loadGroups(token: String, completion: @escaping () -> Void ){
         let path = "/method/groups.get"
         let parameters: Parameters = [
             "extended": "1",
@@ -54,7 +54,7 @@ class GroupsLoader {
             do {
                 let group = try JSONDecoder().decode(GroupsFinalResponse.self, from: response.value!)
                 self?.saveGroupsData(group.response.items )
-                completion(group.response.items)
+                completion()
                 print(group)
             } catch {
                 print(error)
@@ -66,7 +66,9 @@ class GroupsLoader {
     func saveGroupsData(_ groups: [MyGroup]) {
         do {
             let realm = try Realm()
+            let oldGroupsData = realm.objects(MyGroup.self)
             realm.beginWrite()
+            realm.delete(oldGroupsData)
             realm.add(groups)
             try realm.commitWrite()
         } catch {

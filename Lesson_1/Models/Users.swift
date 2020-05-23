@@ -49,7 +49,7 @@ class FriendsLoader {
     
     let baseUrl = "https://api.vk.com"
     
-    func loadFriendsList(token: String, completion: @escaping ([MyFriend]) -> Void )  {
+    func loadFriendsList(token: String, completion: @escaping () -> Void )  {
         let path = "/method/friends.get"
         let parameters: Parameters = [
             "fields": "photo_200_orig",
@@ -62,7 +62,7 @@ class FriendsLoader {
             do {
                 let friend = try JSONDecoder().decode(FriendsFinalResponse.self, from: response.value!)
                 self?.saveFriendsData(friend.response.items)
-                completion(friend.response.items)
+                completion()
                 print(friend)
             } catch {
                 print(error)
@@ -74,7 +74,10 @@ class FriendsLoader {
     func saveFriendsData(_ friends: [MyFriend]) {
         do {
             let realm = try Realm()
+            print(realm.configuration.fileURL)
+            let oldFriendsData = realm.objects(MyFriend.self)
             realm.beginWrite()
+            realm.delete(oldFriendsData)
             realm.add(friends)
             try realm.commitWrite()
         } catch {

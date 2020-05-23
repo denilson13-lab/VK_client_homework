@@ -20,9 +20,11 @@ struct PhotoItemResponse: Decodable {
 class MyPhoto: Object, Decodable {
     @objc dynamic var photo = ""
     @objc dynamic var type = ""
+    @objc dynamic var photoSetId = 0
     
     enum FirstStageKeys: String, CodingKey {
         case sizes = "sizes"
+        case photoSetId = "owner_id"
     }
     
     enum SecondStageKeys: String, CodingKey {
@@ -35,6 +37,8 @@ class MyPhoto: Object, Decodable {
         
         self.init()
         let photoContainer = try decoder.container(keyedBy: FirstStageKeys.self)
+        self.photoSetId = try photoContainer.decode(Int.self, forKey: .photoSetId)
+        
         var sizesArray = try photoContainer.nestedUnkeyedContainer(forKey: .sizes)
         let sizesValue = try sizesArray.nestedContainer(keyedBy: SecondStageKeys.self)
         
@@ -47,7 +51,7 @@ class PhotoLoader {
     
     let baseUrl = "https://api.vk.com"
     
-    func loadPhoto(token: String, ownerID: Int, completion: @escaping ([MyPhoto]) -> Void ) {
+    func loadPhoto(token: String, ownerID: Int, completion: @escaping () -> Void ) {
         let path = "/method/photos.getAll"
         let parameters: Parameters = [
             "owner_id": ownerID,
@@ -58,9 +62,9 @@ class PhotoLoader {
         AF.request(url, method: .get, parameters: parameters).responseData { [weak self] response in
             
             do {
-                let photo = try JSONDecoder().decode(PhotoFinalResponse.self, from: response.value!)
-                self?.savePhotoData(photo.response.items)
-                completion(photo.response.items)
+                let photo = try JSONDecoder().decode(PhotoFinalResponse.self, from: response.value!).response.items
+                self?.savePhotoData(photo, ownerID: ownerID)
+                completion()
                 print(photo)
             } catch {
                 print(error)
@@ -69,10 +73,12 @@ class PhotoLoader {
         }
     }
     
-    func savePhotoData(_ photos: [MyPhoto]) {
+    func savePhotoData(_ photos: [MyPhoto], ownerID: Int) {
         do {
             let realm = try Realm()
+            let oldPhotoData = realm.objects(MyPhoto.self).filter("photoSetId == %@", ownerID)
             realm.beginWrite()
+            realm.delete(oldPhotoData)
             realm.add(photos)
             try realm.commitWrite()
         } catch {

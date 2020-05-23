@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class GroupsTableViewController: UITableViewController {
     
@@ -29,11 +30,9 @@ class GroupsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        groupsLoader.loadGroups(token: session.token) { [weak self] group in
-            self?.myGroups = group
-            
-            self?.tableView.reloadData()
+        loadFromRealm()
+        groupsLoader.loadGroups(token: session.token) { [weak self] in
+            self?.loadFromRealm()
         }
         
         
@@ -42,6 +41,17 @@ class GroupsTableViewController: UITableViewController {
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+    }
+    
+    func loadFromRealm() {
+        do {
+            let realm = try Realm()
+            let myGroups = realm.objects(MyGroup.self)
+            self.myGroups = Array(myGroups)
+            self.tableView.reloadData()
+        } catch {
+            print(error)
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

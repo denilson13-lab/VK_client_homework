@@ -8,6 +8,7 @@
 
 import UIKit
 import AlamofireImage
+import RealmSwift
 
 struct Section <T> {
     var title: String
@@ -33,10 +34,9 @@ class ListOfFriendsController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        dataLoader.loadFriendsList(token: session.token) { [weak self] friend in
-            self?.myFriends = friend
-            self?.tableView.reloadData()
+        loadFromRealm() 
+        dataLoader.loadFriendsList(token: session.token) { [weak self] in
+            self?.loadFromRealm()
         }
         
         searchController.searchResultsUpdater = self
@@ -49,6 +49,18 @@ class ListOfFriendsController: UITableViewController {
 //        usersSection = usersDic.map {Section(title: String($0.key), items: $0.value)}
 //        usersSection.sort {$0.title < $1.title}
     }
+    
+    func loadFromRealm() {
+        do {
+            let realm = try Realm()
+            let myFriends = realm.objects(MyFriend.self)
+            self.myFriends = Array(myFriends)
+            self.tableView.reloadData()
+        } catch {
+            print(error)
+        }
+    }
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
 //        isFiltering ? 1 : usersSection.count

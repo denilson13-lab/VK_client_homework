@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 private let reuseIdentifier = "Cell"
 
@@ -20,14 +21,23 @@ class FriendsCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        photoLoader.loadPhoto(token: session.token, ownerID: ownerID) { [weak self] photo in
-            self?.myPhotos = photo
-            self?.collectionView.reloadData()
+        loadFromRealm()
+        photoLoader.loadPhoto(token: session.token, ownerID: ownerID) { [weak self] in
+            self?.loadFromRealm()
         }
         
-        
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+    }
+    
+    func loadFromRealm() {
+        do {
+            let realm = try Realm()
+            let myPhotos = realm.objects(MyPhoto.self).filter("photoSetId == %@", ownerID)
+            self.myPhotos = Array(myPhotos)
+            self.collectionView.reloadData()
+        } catch {
+            print(error)
+        }
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {

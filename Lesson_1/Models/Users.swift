@@ -23,6 +23,7 @@ class MyFriend: Object, Decodable {
     @objc dynamic var name = ""
     @objc dynamic var surname = ""
     @objc dynamic var photo = ""
+
     
         enum SecondStageKeys: String, CodingKey {
             case id = "id"
@@ -49,7 +50,7 @@ class FriendsLoader {
     
     let baseUrl = "https://api.vk.com"
     
-    func loadFriendsList(token: String, completion: @escaping () -> Void )  {
+    func loadFriendsList(token: String)  {
         let path = "/method/friends.get"
         let parameters: Parameters = [
             "fields": "photo_200_orig",
@@ -62,7 +63,6 @@ class FriendsLoader {
             do {
                 let friend = try JSONDecoder().decode(FriendsFinalResponse.self, from: response.value!)
                 self?.saveFriendsData(friend.response.items)
-                completion()
                 print(friend)
             } catch {
                 print(error)

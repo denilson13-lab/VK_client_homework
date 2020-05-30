@@ -10,16 +10,20 @@ import UIKit
 import AlamofireImage
 import RealmSwift
 
-struct Section <T> {
-    var title: String
-    var items: [T]
-}
+//struct Section <T> {
+//    var title: String
+//    var items: [T]
+//}
 
 class ListOfFriendsController: UITableViewController {
     
     let dataLoader = FriendsLoader()
     let session = Session.instance
-    var myFriends = [MyFriend]()
+//    var myFriends = [MyFriend]()
+    
+    var myFriends: Results<MyFriend>?
+    var token: NotificationToken?
+
     
     var filteredUsers: [MyFriend] = []
 //    var usersSection = [Section<MyFriend>]()
@@ -34,10 +38,9 @@ class ListOfFriendsController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadFromRealm() 
-        dataLoader.loadFriendsList(token: session.token) { [weak self] in
-            self?.loadFromRealm()
-        }
+
+        dataLoader.loadFriendsList(token: session.token)
+        pairTableAndRealm()
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -50,16 +53,43 @@ class ListOfFriendsController: UITableViewController {
 //        usersSection.sort {$0.title < $1.title}
     }
     
-    func loadFromRealm() {
-        do {
-            let realm = try Realm()
-            let myFriends = realm.objects(MyFriend.self)
-            self.myFriends = Array(myFriends)
-            self.tableView.reloadData()
-        } catch {
-            print(error)
+
+    func pairTableAndRealm() {
+        guard let realm = try? Realm() else { return }
+        myFriends = realm.objects(MyFriend.self)
+        token = myFriends!.observe { [weak self] (changes: RealmCollectionChange) in
+            guard let tableView = self?.tableView else { return }
+            
+            switch changes {
+            case .initial:
+                tableView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                tableView.beginUpdates()
+                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
+                                     with: .automatic)
+                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.endUpdates()
+            case .error(let error):
+                fatalError("\(error)")
+            }
         }
     }
+
+
+    
+//    func loadFromRealm() {
+//        do {
+//            let realm = try Realm()
+//            let myFriends = realm.objects(MyFriend.self)
+//            self.myFriends = Array(myFriends)
+//            self.tableView.reloadData()
+//        } catch {
+//            print(error)
+//        }
+//    }
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -69,12 +99,12 @@ class ListOfFriendsController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        isFiltering ? filteredUsers.count : usersSection[section].items.count
-        isFiltering ? filteredUsers.count : myFriends.count
+        isFiltering ? filteredUsers.count : myFriends?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath) as! FriendsCell
-        let user: MyFriend = isFiltering ? filteredUsers[indexPath.row] : myFriends[indexPath.row]
+        let user: MyFriend = isFiltering ? filteredUsers[indexPath.row] : myFriends![indexPath.row]
 //        let user: MyFriend = isFiltering ? filteredUsers[indexPath.row] : usersSection[indexPath.section].items[indexPath.row]
         
         cell.friendName.text = "\(user.name) \(user.surname)"
@@ -91,13 +121,13 @@ class ListOfFriendsController: UITableViewController {
             guard let destination = segue.destination as? FriendsCollectionViewController else { return }
             if let indexPath = tableView.indexPathForSelectedRow {
 //                let user: MyFriend = isFiltering ? filteredUsers[indexPath.row] : usersSection[indexPath.section].items[indexPath.row]
-                let user: MyFriend = isFiltering ? filteredUsers[indexPath.row] : myFriends[indexPath.row]
+                let user: MyFriend = isFiltering ? filteredUsers[indexPath.row] : myFriends![indexPath.row]
                 destination.ownerID = user.id
             }
         }
     
     func filterContentForSearchText(_ searchText: String) {
-        filteredUsers = myFriends.filter { (user: MyFriend) -> Bool in
+        filteredUsers = myFriends!.filter { (user: MyFriend) -> Bool in
             return (user.name + user.surname).lowercased().contains(searchText.lowercased())
         }
         tableView.reloadData()

@@ -41,7 +41,7 @@ class GroupsLoader {
     
     let baseUrl = "https://api.vk.com"
     
-    func loadGroups(token: String, completion: @escaping () -> Void ){
+    func loadGroups(token: String){
         let path = "/method/groups.get"
         let parameters: Parameters = [
             "extended": "1",
@@ -54,7 +54,6 @@ class GroupsLoader {
             do {
                 let group = try JSONDecoder().decode(GroupsFinalResponse.self, from: response.value!)
                 self?.saveGroupsData(group.response.items )
-                completion()
                 print(group)
             } catch {
                 print(error)

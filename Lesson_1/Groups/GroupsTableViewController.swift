@@ -13,7 +13,9 @@ class GroupsTableViewController: UITableViewController {
     
     let groupsLoader = GroupsLoader()
     let session = Session.instance
-    var myGroups = [MyGroup]()
+//    var myGroups = [MyGroup]()
+    var myGroups: Results<MyGroup>?
+    var token: NotificationToken?
     
     var filteredGroups: [MyGroup] = []
     
@@ -30,11 +32,8 @@ class GroupsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadFromRealm()
-        groupsLoader.loadGroups(token: session.token) { [weak self] in
-            self?.loadFromRealm()
-        }
-        
+        groupsLoader.loadGroups(token: session.token)
+        pairTableAndRealm()
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -43,16 +42,30 @@ class GroupsTableViewController: UITableViewController {
         definesPresentationContext = true
     }
     
-    func loadFromRealm() {
-        do {
-            let realm = try Realm()
-            let myGroups = realm.objects(MyGroup.self)
-            self.myGroups = Array(myGroups)
-            self.tableView.reloadData()
-        } catch {
-            print(error)
+    func pairTableAndRealm() {
+        guard let realm = try? Realm() else { return }
+        myGroups = realm.objects(MyGroup.self)
+        token = myGroups!.observe { [weak self] (changes: RealmCollectionChange) in
+            guard let tableView = self?.tableView else { return }
+            
+            switch changes {
+            case .initial:
+                tableView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                tableView.beginUpdates()
+                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
+                                     with: .automatic)
+                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.endUpdates()
+            case .error(let error):
+                fatalError("\(error)")
+            }
         }
     }
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -62,7 +75,7 @@ class GroupsTableViewController: UITableViewController {
         if isFiltering {
             return filteredGroups.count
         }
-        return myGroups.count
+        return myGroups!.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,7 +84,7 @@ class GroupsTableViewController: UITableViewController {
         if isFiltering {
             group = filteredGroups[indexPath.row]
         } else {
-            group = myGroups[indexPath.row]
+            group = myGroups![indexPath.row]
         }
         cell.groupName.text = group.name
         
@@ -101,15 +114,15 @@ class GroupsTableViewController: UITableViewController {
     //            }
     //    }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            myGroups.remove(at: indexPath.row)
-            tableView.reloadData()
-        }
-    }
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            myGroups.remove(at: indexPath.row)
+//            tableView.reloadData()
+//        }
+//    }
     
     func filterContentForSearchText(_ searchText: String) {
-        filteredGroups = myGroups.filter { (group: MyGroup) -> Bool in
+        filteredGroups = myGroups!.filter { (group: MyGroup) -> Bool in
             if group.name.lowercased().contains(searchText.lowercased()) {
                 return true
             } else {
